@@ -14,8 +14,8 @@ import java.io.IOException;
 
 public class OriginalDesign extends PApplet {
 
-int x = pmouseX;
-int y = pmouseY;
+int x = mouseX;
+int y = mouseY;
 
 public void setup() {
        
@@ -25,7 +25,7 @@ public void draw() {
     
 }
 
-public void mouseClicked() {
+public void mouseDragged() {
     mandala(x,y);
 }
 
@@ -33,9 +33,9 @@ public void mandala(int a, int b) {
     stroke(255, 165, 0);
     noFill();
 
-    ellipse(a, b, 200, 200);
-    ellipse(a, b, 187, 187);
-    ellipse(a, b, 176, 176);
+    ellipse(mouseX, mouseY, 200, 200);
+    ellipse(mouseX, mouseY, 187, 187);
+    ellipse(mouseX, mouseY, 176, 176);
 }
   public void settings() {  size(1000, 1000); }
   static public void main(String[] passedArgs) {
