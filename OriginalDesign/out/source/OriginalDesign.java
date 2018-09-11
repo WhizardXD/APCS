@@ -22,10 +22,15 @@ public void setup() {
 }
 
 public void draw() {
-    
+    fill(0, 0, 0, 10);
+    rect(0, 0, 1000, 1000);
 }
 
 public void mouseDragged() {
+    mandala(x,y);
+}
+
+public void mouseClicked() {
     mandala(x,y);
 }
 

@@ -6,10 +6,15 @@ void setup() {
 }
 
 void draw() {
-    
+    fill(0, 0, 0, 10);
+    rect(0, 0, 1000, 1000);
 }
 
 void mouseDragged() {
+    mandala(x,y);
+}
+
+void mouseClicked() {
     mandala(x,y);
 }
 
