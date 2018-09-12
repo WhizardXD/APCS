@@ -14,35 +14,60 @@ import java.io.IOException;
 
 public class OriginalDesign extends PApplet {
 
-int x = mouseX;
-int y = mouseY;
-
 public void setup() {
        
 }
 
 public void draw() {
-    fill(0, 0, 0, 10);
-    rect(0, 0, 1000, 1000);
+    fadingBackground();
+
+    if (mousePressed == true) {
+        mandala();
+    }
 }
 
+
+
+public void fadingBackground() {
+    fill(0, 0, 0, 10);
+    strokeWeight(0);
+
+    rect(0, 0, 500, 500);
+
+}
+
+
 public void mouseDragged() {
-    mandala(x,y);
+    slinky();
 }
 
 public void mouseClicked() {
-    mandala(x,y);
+    mandala();
 }
 
-public void mandala(int a, int b) {
+
+public void mandala() {
     stroke(255, 165, 0);
     noFill();
+    strokeWeight(1);
 
-    ellipse(mouseX, mouseY, 200, 200);
+    ellipse(mouseX, mouseY, 220, 220);
     ellipse(mouseX, mouseY, 187, 187);
     ellipse(mouseX, mouseY, 176, 176);
 }
-  public void settings() {  size(1000, 1000); }
+
+public void slinky() {
+    stroke(140, 165, 255);
+    noFill();
+    strokeWeight(5);
+
+    ellipse(mouseX, mouseY, 200, 200);
+    ellipse(mouseX, mouseY, 177, 177);
+    ellipse(mouseX, mouseY, 166, 166);
+    
+    point(mouseX, mouseY);
+}
+  public void settings() {  size(500, 500); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "OriginalDesign" };
     if (passedArgs != null) {
