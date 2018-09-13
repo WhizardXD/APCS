@@ -17,15 +17,15 @@
         },
         "args": [
           "--force",
-          "--sketch=${fileDirname}",
-          "--output=${fileDirname}/out",
+          "--sketch=${file}",
+          "--output=${file}/out",
           "--run"
         ],
         "windows": {
           "args": [
             "--force",
-            "--sketch=${fileDirname}",
-            "--output=${fileDirname}\\out",
+            "--sketch=${file}",
+            "--output=${file}\\out",
             "--run"
           ]
         }
