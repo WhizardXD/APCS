@@ -1,0 +1,22 @@
+int startX = 0;
+int startY = 250;
+int endX = 0;
+int endY = 250;
+
+
+void setup() {
+    size(500, 500);
+
+    strokeWeight(1);
+    background(255,255,0);
+}
+
+void draw() {
+    int x = (int)(Math.random()*255);
+    stroke(x, x, x);
+}
+
+
+void mousePressed() {
+    
+}
