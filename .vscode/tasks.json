@@ -17,15 +17,25 @@
         },
         "args": [
           "--force",
+<<<<<<< Updated upstream
           "--sketch=${file}",
           "--output=${file}/out",
+=======
+          "--sketch=C:/Users/chyuan1/Documents/GitHub/APCS/Processing/Lightning",
+          "--output=C:/Users/chyuan1/Documents/GitHub/APCS/Processing/Lightning/out",
+>>>>>>> Stashed changes
           "--run"
         ],
         "windows": {
           "args": [
             "--force",
+<<<<<<< Updated upstream
             "--sketch=${file}",
             "--output=${file}\\out",
+=======
+            "--sketch=C:/Users/chyuan1/Documents/GitHub/APCS/Processing/Lightning",
+            "--output=C:/Users/chyuan1/Documents/GitHub/APCS/Processing/Lightning\\out",
+>>>>>>> Stashed changes
             "--run"
           ]
         }
