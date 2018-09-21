@@ -17,15 +17,15 @@
       },
       "args": [
         "--force",
-        "--sketch=C:/Users/chyuan1/Documents/GitHub/APCS/Processing/CoinFlip",
-        "--output=C:/Users/chyuan1/Documents/GitHub/APCS/Processing/CoinFlip/out",
+        "--sketch=C:/Users/CHRISY~1/Documents/GitHub/APCS/Processing/Lightning",
+        "--output=C:/Users/CHRISY~1/Documents/GitHub/APCS/Processing/Lightning/out",
         "--run"
       ],
       "windows": {
         "args": [
           "--force",
-          "--sketch=C:/Users/chyuan1/Documents/GitHub/APCS/Processing/CoinFlip",
-          "--output=C:/Users/chyuan1/Documents/GitHub/APCS/Processing/CoinFlip\\out",
+          "--sketch=C:/Users/CHRISY~1/Documents/GitHub/APCS/Processing/Lightning",
+          "--output=C:/Users/CHRISY~1/Documents/GitHub/APCS/Processing/Lightning\\out",
           "--run"
         ]
       }
