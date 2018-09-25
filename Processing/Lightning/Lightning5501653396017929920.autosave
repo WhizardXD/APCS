@@ -1,0 +1,47 @@
+int startX = 250;
+int startY = 0;
+int endX = 0;
+int endY = 250;
+
+
+void setup() {
+    size(500, 500);
+
+    strokeWeight(1);
+    background(255,255,0);
+
+    noLoop();
+}
+
+void draw() {
+    fadingBackground();
+    while (startY < 500) {
+        int a = 10*((int)((Math.random()*8)-4));
+        int b = 10*((int)((Math.random()*8)+1));
+
+        fill(0,0,0);
+        endX = startX + a;
+        endY = startY + b;
+        line(startX, startY, endX, endY);
+        startX = endX;
+        startY = endY;
+
+
+        // a = 10*((int)((Math.random()*8)-4));
+
+    }
+}
+
+void fadingBackground() {
+    fill(255, 255, 0, 100000);
+    strokeWeight(0);
+
+    rect(0, 0, 500, 500);
+
+}
+
+
+void mousePressed() {
+    startY = 0;
+    redraw();
+}
