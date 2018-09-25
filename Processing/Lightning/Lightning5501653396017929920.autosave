@@ -7,34 +7,25 @@ int endY = 250;
 void setup() {
     size(500, 500);
 
-    // strokeWeight(100);
-    // background(0,0,0);
-
-    frameRate(60);
+    strokeWeight(1);
+    background(255,255,0);
 
     noLoop();
 }
 
 void draw() {
     fadingBackground();
-    while (startY < 500 && startX < 500) {
+    while (startY < 500) {
         int a = 10*((int)((Math.random()*8)-4));
         int b = 10*((int)((Math.random()*8)+1));
 
+        fill(0,0,0);
         endX = startX + a;
         endY = startY + b;
-        stroke(255,255,0);
-        strokeWeight(8);
         line(startX, startY, endX, endY);
         startX = endX;
         startY = endY;
-        if (startX >= 500 || startX <= 0) {
-            startX = 250;
-            startY = 0;
-            endX = 0;
-            endY = 250;
-            continue;
-        }
+
 
         // a = 10*((int)((Math.random()*8)-4));
 
@@ -42,11 +33,11 @@ void draw() {
 }
 
 void fadingBackground() {
-    fill(0, 0, 0, 10);
+    fill(255, 255, 0, 100000);
     strokeWeight(0);
 
     rect(0, 0, 500, 500);
-    loop();
+
 }
 
 
