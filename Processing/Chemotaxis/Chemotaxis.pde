@@ -13,11 +13,20 @@ void setup() {
 }
 
 void draw() {
+    fadingBackground();
     for (int i = 0; i < colony.length; i++) {
         colony[i].move();
         colony[i].show();
     }
 
+}
+
+void fadingBackground() {
+    fill(0, 0, 0, 10);
+    strokeWeight(0);
+
+    rect(0, 0, 500, 500);
+    loop();
 }
 
 
@@ -29,8 +38,9 @@ class Bacteria {
 
 
     Bacteria() {
-        a = ((int)((Math.random()*8)-4));
-        myX = myY = 250 + (-50 * a);
+        // a = ((int)((Math.random()*8)-4));
+        myX = myY = 250;
+        //  + (-50 * a);
     }
 
     void move() {
@@ -43,6 +53,7 @@ class Bacteria {
 
     void show() {
         strokeWeight(0);
+        fill(255, 255, 255);
         ellipse(myX, myY, 10, 10);
     }
 
