@@ -44,8 +44,18 @@ class Bacteria {
     }
 
     void move() {
-        a = ((int)((Math.random()*8)-4));
-        b = ((int)((Math.random()*8)-4));
+        if (mouseX > myX) {
+            a = ((int)((Math.random()*8)-1));
+        } else if (mouseY > myY) {
+            b = ((int)((Math.random()*8)-1));
+        } else if (mouseX < myX) {
+            a = ((int)((Math.random()*8)-7));
+        } else if (mouseY < myY) {
+            b = ((int)((Math.random()*8)-7));
+        } else {
+            a = ((int)((Math.random()*8)-4));
+            b = ((int)((Math.random()*8)-4));
+        }
 
         myX = myX + a;
         myY = myY + b;  
