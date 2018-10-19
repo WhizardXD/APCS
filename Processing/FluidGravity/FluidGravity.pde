@@ -24,9 +24,12 @@ void draw() {
 class Fluid {
     
     int myX, myY;
+    double xpos, ypos, speed, angle, gravity;
+    double a, b, c;
 
     Fluid() {
         myX = myY = 250;
+        a = Math.random();
     }
 
     void move() {
