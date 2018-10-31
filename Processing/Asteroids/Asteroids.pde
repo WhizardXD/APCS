@@ -1,6 +1,6 @@
 //your variable declarations here
 public void setup() {
-    //your code here
+    size(500, 500);
 }
 
 public void draw() {
@@ -8,8 +8,17 @@ public void draw() {
 }
 
 
-class Spaceship /*extends Floater*/ {
-    //your code here
+class Spaceship extends Floater {
+    
+    private 
+    public Spaceship() {
+        corners = 3;
+        myCenterX = myCenterY = 250;
+        myPointDirection = 270;
+        myDirectionX = myDirectionY = 0;
+         
+    }
+
 }
 
 class Star /*note that this class does NOT extend Floater*/ {
@@ -26,6 +35,7 @@ abstract class Floater {
     protected double myCenterX, myCenterY; //holds center coordinates
     protected double myDirectionX, myDirectionY; //holds x and y coordinates of the vector for direction of travel
     protected double myPointDirection; //holds current direction the ship is pointing in degrees
+
     abstract public void setX(int x);
     abstract public int getX();
     abstract public void setY(int y);
