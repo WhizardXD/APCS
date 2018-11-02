@@ -10,14 +10,32 @@ public void draw() {
 
 class Spaceship extends Floater {
     
-    private 
+    // private int myX, myY;
+
     public Spaceship() {
         corners = 3;
+        xCorners = new int[corners];
+        yCorners = new int[corners];
+
         myCenterX = myCenterY = 250;
         myPointDirection = 270;
         myDirectionX = myDirectionY = 0;
-         
+        
+        myColor = color(255,0,150);
     }
+
+    public void setX(int x) {myCenterX = x;}
+    public double getX() {return myCenterX;}
+    public void setDirectionX(double x) {myDirectionX = x;}
+    public double getDirectionX() {return myDirectionX;}
+
+    public void setY(int y) {myCenterY = y;}
+    public double getY() {return myCenterY;}
+    public void setDirectionY(double y) {myDirectionY = y;}
+    public double getDirectionY() {return myDirectionY;}
+
+    public void setPointDirection(double degrees) {myPointDirection = degrees;}
+    public double getPointDirection() {return myPointDirection;}
 
 }
 
@@ -37,14 +55,14 @@ abstract class Floater {
     protected double myPointDirection; //holds current direction the ship is pointing in degrees
 
     abstract public void setX(int x);
-    abstract public int getX();
+    abstract public double getX();
     abstract public void setY(int y);
-    abstract public int getY();
+    abstract public double getY();
     abstract public void setDirectionX(double x);
     abstract public double getDirectionX();
     abstract public void setDirectionY(double y);
     abstract public double getDirectionY();
-    abstract public void setPointDirection(int degrees);
+    abstract public void setPointDirection(double degrees);
     abstract public double getPointDirection();
 
     //Accelerates the floater in the direction it is pointing (myPointDirection)
