@@ -1,10 +1,14 @@
 //your variable declarations here
+Spaceship wing = new Spaceship();
+
 public void setup() {
     size(500, 500);
+    background(0, 0, 0);
 }
 
 public void draw() {
     //your code here
+    wing.show();
 }
 
 
@@ -16,6 +20,12 @@ class Spaceship extends Floater {
         corners = 3;
         xCorners = new int[corners];
         yCorners = new int[corners];
+        xCorners[0] = -8;
+        yCorners[0] = -8;
+        xCorners[1] = 16;
+        yCorners[1] = 0;
+        xCorners[2] = -8;
+        yCorners[2] = 8;
 
         myCenterX = myCenterY = 250;
         myPointDirection = 270;
@@ -66,7 +76,7 @@ abstract class Floater {
     abstract public double getPointDirection();
 
     //Accelerates the floater in the direction it is pointing (myPointDirection)
-    public void accelerate (double dAmount) {
+    public void accelerate(double dAmount) {
         //convert the current direction the floater is pointing to radians
         double dRadians = myPointDirection*(Math.PI/180);
         //change coordinates of direction of travel
@@ -74,25 +84,25 @@ abstract class Floater {
         myDirectionY += ((dAmount) * Math.sin(dRadians));
     }
 
-    public void turn (int nDegreesOfRotation) {
+    public void turn(int nDegreesOfRotation) {
         //rotates the floater by a given number of degrees
         myPointDirection += nDegreesOfRotation;
     }
 
     //move the floater in the current direction of travel
-    public void move () {
+    public void move() {
         //change the x and y coordinates by myDirectionX and myDirectionY
         myCenterX += myDirectionX;
         myCenterY += myDirectionY;
 
         //wrap around screen
-        if (myCenterX >width) {
+        if (myCenterX > width) {
             myCenterX = 0;
-        } else if (myCenterX<0) {
+        } else if (myCenterX < 0) {
             myCenterX = width;
         }
 
-        if(myCenterY >height) {
+        if(myCenterY > height) {
             myCenterY = 0;
         } else if (myCenterY < 0) {
             myCenterY = height;
@@ -100,7 +110,7 @@ abstract class Floater {
     }
 
     //Draws the floater at the current position
-    public void show () {
+    public void show() {
         fill(myColor);
         stroke(myColor);
 
@@ -123,5 +133,7 @@ abstract class Floater {
         //"unrotate" and "untranslate" in reverse order
         rotate(-1*dRadians);
         translate(-1*(float)myCenterX, -1*(float)myCenterY);
+
+        System.out.println("test");
     }
 }
