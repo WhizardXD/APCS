@@ -3,13 +3,28 @@ Spaceship wing = new Spaceship();
 
 public void setup() {
     size(500, 500);
-    background(0, 0, 0);
+
 }
 
 public void draw() {
-    //your code here
+    background(0, 0, 0);
     wing.show();
+    wing.move();
+    // keyPressed();
 }
+
+public void keyPressed() {
+    if (key == 'w') {
+        wing.accelerate(1.5);
+    }
+    if (key == 'a') {
+        wing.turn(-12);
+    }
+    if (key == 'd') {
+        wing.turn(12);
+    }
+}
+
 
 
 class Spaceship extends Floater {
