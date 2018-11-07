@@ -15,7 +15,7 @@ public void draw() {
 
 public void keyPressed() {
     if (key == 'w') {
-        wing.accelerate(1.5);
+        wing.accelerate(0.05);
     }
     if (key == 'a') {
         wing.turn(-12);
