@@ -1,20 +1,32 @@
 //your variable declarations here
 Spaceship wing = new Spaceship();
+Star [] drop;
 
 public void setup() {
     size(500, 500);
-
+    drop = new Star[100];
+    for (int i = 0; i < 100; i++) {
+        drop[i] = new Star();
+        drop[i].show();
+    }
 }
 
 public void draw() {
     background(0, 0, 0);
     wing.show();
     wing.move();
-    // keyPressed();
+    
+    // starDraw();
+    // if (wing.getX() > 500) {
+    //     starDraw();
+    // }
 }
 
 public void keyPressed() {
-    if (key == 'w') {
+    if (key != 'w') {
+        // continue;
+        // wing.accelerate(0.05);
+    } else {
         wing.accelerate(0.05);
     }
     if (key == 'a') {
@@ -25,6 +37,10 @@ public void keyPressed() {
     }
 }
 
+// public void starDraw(){
+
+//     // noLoop();
+// }
 
 
 class Spaceship extends Floater {
@@ -65,7 +81,19 @@ class Spaceship extends Floater {
 }
 
 class Star /*note that this class does NOT extend Floater*/ {
-  //your code here
+    //your code here
+    private int myX, myY;
+    private int a = ((int)(Math.random()*8));
+    private int b = ((int)(Math.random()*8));
+
+    public Star() {
+        myX = a;
+        myY = b;
+    }
+
+    public void show() {
+        ellipse(myX, myY, 10, 10);
+    }
 }
 
 
