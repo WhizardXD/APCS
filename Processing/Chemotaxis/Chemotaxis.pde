@@ -1,10 +1,14 @@
 // int bacColor = color
 int a, b;
+int locX, locY;
+int counter, time;
+boolean set;
 Bacteria [] colony;
 
 void setup() {
     size(500, 500);
-
+    frameRate(30);
+    time = millis();
     colony = new Bacteria[100];
 
     for (int i = 0; i < colony.length; i++) {
@@ -14,11 +18,17 @@ void setup() {
 
 void draw() {
     fadingBackground();
-    for (int i = 0; i < colony.length; i++) {
-        colony[i].move();
-        colony[i].show();
+    // System.out.println(set);
+    // counter = 0;
+    // counter++;
+    if (((millis() - time)/1000)%20 == 0) {
+        set = false;
     }
 
+    for (int i = 0; i < colony.length; i++) {
+        colony[i].show();
+        colony[i].move();
+    }
 }
 
 void fadingBackground() {
@@ -29,12 +39,25 @@ void fadingBackground() {
     loop();
 }
 
+void mouseClicked() {
+    locX = mouseX;
+    locY = mouseY;
+    fill(57, 255, 20);
+    rect(locX, locY, 10, 10);
+
+    set = true;
+    // time = millis();
+}
+
+// void mouseReleased() {
+//     set = false;
+// }
+
 
 class Bacteria {
 
     int myX, myY;
-    int a = ((int)((Math.random()*8)-4));
-    int b = ((int)((Math.random()*8)-4));
+    int a, b;
 
 
     Bacteria() {
@@ -44,21 +67,79 @@ class Bacteria {
     }
 
     void move() {
-        if (mouseX > myX) {
-            a = ((int)((Math.random()*8)-1));
-        } else if (mouseY > myY) {
-            b = ((int)((Math.random()*8)-1));
-        } else if (mouseX < myX) {
-            a = ((int)((Math.random()*8)-7));
-        } else if (mouseY < myY) {
-            b = ((int)((Math.random()*8)-7));
+        if (set == true) {
+            if (locX > myX && locY > myY) {
+                a = ((int)(Math.random()*9)-3);
+                b = ((int)(Math.random()*9)-3);
+            } else if (locX > myX && locY < myY) {
+                a = ((int)(Math.random()*9)-3);
+                b = ((int)(Math.random()*9)-5);
+            } else if (locX < myX && locY > myY) {
+                a = ((int)(Math.random()*9)-5);
+                b = ((int)(Math.random()*9)-3);   
+            } else if (locX < myX && locY < myY && locX != 0 && locY != 0) {
+                a = ((int)(Math.random()*9)-5);
+                b = ((int)(Math.random()*9)-5);
+            } else if (locX > myX && locY == myY) {
+                a = ((int)(Math.random()*9)-3);
+                b = ((int)(Math.random()*9)-4);
+            } else if (locX < myX && locY == myY) {
+                a = ((int)(Math.random()*9)-5);
+                b = ((int)(Math.random()*9)-4);
+            } else if (locX == myX && locY > myY) {
+                a = ((int)(Math.random()*9)-4);
+                b = ((int)(Math.random()*9)-3);
+            } else if (locX == myX && locY < myY) {
+                a = ((int)(Math.random()*9)-4);
+                b = ((int)(Math.random()*9)-5);
+            } else if (locX == myX && locY == myY) {
+                myX = locX;
+                myY = locY;
+                a = ((int)(Math.random()*9)-4);
+                b = ((int)(Math.random()*9)-4);
+            }
         } else {
-            a = ((int)((Math.random()*8)-4));
-            b = ((int)((Math.random()*8)-4));
+            
+        }
+        
+        if (set == false) { 
+            if (mouseX > myX && mouseY > myY) {
+                a = ((int)(Math.random()*9)-3);
+                b = ((int)(Math.random()*9)-3);
+            } else if (mouseX > myX && mouseY < myY) {
+                a = ((int)(Math.random()*9)-3);
+                b = ((int)(Math.random()*9)-5);
+            } else if (mouseX < myX && mouseY > myY) {
+                a = ((int)(Math.random()*9)-5);
+                b = ((int)(Math.random()*9)-3);
+            } else if (mouseX < myX && mouseY < myY && mouseX != 0 && mouseY != 0) {
+                a = ((int)(Math.random()*9)-5);
+                b = ((int)(Math.random()*9)-5);
+            } else if (mouseX > myX && mouseY == myY) {
+                a = ((int)(Math.random()*9)-3);
+                b = ((int)(Math.random()*9)-4);
+            } else if (mouseX < myX && mouseY == myY) {
+                a = ((int)(Math.random()*9)-5);
+                b = ((int)(Math.random()*9)-4);
+            } else if (mouseX == myX && mouseY > myY) {
+                a = ((int)(Math.random()*9)-4);
+                b = ((int)(Math.random()*9)-3);
+            } else if (mouseX == myX && mouseY < myY) {
+                a = ((int)(Math.random()*9)-4);
+                b = ((int)(Math.random()*9)-5);
+            } else if (mouseX == 0 && mouseY == 0) {
+                a = ((int)(Math.random()*9)-4);
+                b = ((int)(Math.random()*9)-4);
+            } else if (locX == myX && locY == myY) {
+                myX = locX;
+                myY = locY;
+                a = ((int)(Math.random()*9)-4);
+                b = ((int)(Math.random()*9)-4);
+            }
         }
 
         myX = myX + a;
-        myY = myY + b;  
+        myY = myY + b;
     }
 
     void show() {
