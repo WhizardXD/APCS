@@ -1,9 +1,8 @@
-//your variable declarations here
+R//your variable declarations here
 Spaceship wing = new Spaceship();
 Star[] drop;
 
 public void setup() {
-    frameRate(60);
     // noLoop();
     background(0, 0, 0);
     size(500, 500);
@@ -13,7 +12,6 @@ public void setup() {
         drop[i] = new Star();
         drop[i].setX(Math.random()*500);
         drop[i].setY(Math.random()*500);
-        drop[i].setOpac((int)(Math.random()*256));
     }
 }
 
@@ -23,9 +21,6 @@ public void draw() {
         drop[i].show();
         drop[i].twinkle();
     }
-
-
-
     wing.show();
     wing.move();
     
@@ -99,31 +94,33 @@ class Star {
     private double a, b;
     private float opac;
     private boolean set;
-    // private PShape star;
+    private PShape star;
 
     public Star() {
         myX = myY = 0;
-        // opac = 0;
-        set = true;
+        opac =  0;
+        set = false;
+        star = createShape(ELLIPSE, (float)myX, (float)myY, 5, 5);
     }
 
     public void setX(double x) {myX = x;}
     public void setY(double y) {myY = y;}
 
-    public void setOpac(float o) {opac = o;}
-
     public void twinkle() {
-        // opac = starting;
-        if (opac >= 0 && set == true) {
-            opac += 25.5;
-            if (opac == 255 && set == true) {
-                set = false;
-            }
+        if (opac < 255 && set == false) {
+            opac += 0.5;
         }
-        if (opac <= 255 && set == false) {
-            opac -= 25.5;
-            if (opac == 0 && set == false) {
-                set = true;
+        if (opac >= 255 && opac != 0) {
+            opac = 255;
+            set = true;
+            while (opac != 0) {
+                star.setFill(color(0, 0, 0));
+                star.setFill(color(255, 255, 255)), opac);
+                opac -= 0.5;
+                if (opac == 0) {
+                    set = false;
+                    break;
+                }
             }
         }
     }
@@ -131,8 +128,8 @@ class Star {
     public void show() {
         // filter(BLUR, 1);
         noStroke();
-        fill(255, 255, 255, opac);
-        ellipse((float)myX, (float)myY, 10, 10);
+        star.setFill(255, 255, 255, opac);
+        shape(star, (float)myX, (float)myY);
         // System.out.println("test");
     }
 }
