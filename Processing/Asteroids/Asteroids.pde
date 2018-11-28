@@ -114,17 +114,16 @@ class Star {
 
     public void twinkle() {
         // opac = starting;
-        if (opac >= 0 && set == true) {
-            opac += 25.5;
-            if (opac == 255 && set == true) {
-                set = false;
-            }
+        if (set == true) {
+            opac += 2;
+        } 
+        if (set == false) {
+            opac -= 2;
         }
-        if (opac <= 255 && set == false) {
-            opac -= 25.5;
-            if (opac == 0 && set == false) {
-                set = true;
-            }
+        if (opac >= 255) {
+            set = false;
+        } else if (opac <= 0) {
+            set = true;
         }
     }
 
