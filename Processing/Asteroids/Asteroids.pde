@@ -13,7 +13,7 @@ public void setup() {
         drop[i] = new Star();
         drop[i].setX(Math.random()*500);
         drop[i].setY(Math.random()*500);
-        drop[i].setOpac((int)(Math.random()*256));
+        drop[i].setOpac((int)(Math.random()*156) + 100);
     }
 }
 
@@ -40,13 +40,13 @@ public void keyPressed() {
         // continue;
         // wing.accelerate(0.05);
     } else {
-        wing.accelerate(1);
+        wing.accelerate(0.05);
     }
     if (key == 'a') {
-        wing.turn(-1);
+        wing.turn(-0.05);
     }
     if (key == 'd') {
-        wing.turn(1);
+        wing.turn(0.05);
     }
 }
 
@@ -115,14 +115,14 @@ class Star {
     public void twinkle() {
         // opac = starting;
         if (set == true) {
-            opac += 2;
+            opac += 1;
         } 
         if (set == false) {
-            opac -= 2;
+            opac -= 1;
         }
         if (opac >= 255) {
             set = false;
-        } else if (opac <= 0) {
+        } else if (opac <= 100) {
             set = true;
         }
     }
@@ -131,7 +131,7 @@ class Star {
         // filter(BLUR, 1);
         noStroke();
         fill(255, 255, 255, opac);
-        ellipse((float)myX, (float)myY, 10, 10);
+        ellipse((float)myX, (float)myY, 5, 5);
         // System.out.println("test");
     }
 }
