@@ -36,10 +36,9 @@ public void draw() {
 }
 
 public void keyPressed() {
-    if (key != 'w') {
-        // continue;
-        // wing.accelerate(0.05);
-    } else {
+    // public boolean w, a, d = false;
+    
+    if (key == 'w') {
         wing.accelerate(0.05);
     }
     if (key == 'a') {
@@ -91,6 +90,21 @@ class Spaceship extends Floater {
     public void setPointDirection(double degrees) {myPointDirection = degrees;}
     public double getPointDirection() {return myPointDirection;}
 
+
+    public void show() {
+        super.show();
+
+        if (keyPressed == true && key == 'w') {
+            // strokeWeight(5);
+            stroke(myColor);
+            line(-12,-20,-4,-6);
+            line(-12,0,-20,0);
+            line(-12,4,-20,6);
+
+            System.out.println("test");
+        }
+    }
+
 }
 
 class Star {
@@ -99,6 +113,7 @@ class Star {
     private double a, b;
     private float opac;
     private boolean set;
+    private float len, weight;
     // private PShape star;
 
     public Star() {
@@ -111,6 +126,8 @@ class Star {
     public void setY(double y) {myY = y;}
 
     public void setOpac(float o) {opac = o;}
+    public void setLen(float l) {len = l;}
+    public void setWeight(float w) {weight = w;}
 
     public void twinkle() {
         // opac = starting;
@@ -125,14 +142,37 @@ class Star {
         } else if (opac <= 100) {
             set = true;
         }
+
+        
+        // if (set == true) {
+        //     len = 0.05
+        // }
+
+
+
+
+
     }
 
     public void show() {
         // filter(BLUR, 1);
+
         noStroke();
         fill(255, 255, 255, opac);
         ellipse((float)myX, (float)myY, 5, 5);
-        // System.out.println("test");
+
+        /*
+        stroke(255, 255, 255, opac);
+        strokeCap(ROUND);
+        strokeWeight(weight);
+        line((float)myX - len, (float)myY, (float)myX + len, (float)myY);
+        line((float)myX, (float)myY - len, (float)myX, (float)myY + len);
+        */
+
+        
+
+
+
     }
 }
 
