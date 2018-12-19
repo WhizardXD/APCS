@@ -1,0 +1,223 @@
+R//your variable declarations here
+Spaceship wing = new Spaceship();
+Star[] drop;
+
+public void setup() {
+    // noLoop();
+    background(0, 0, 0);
+    size(500, 500);
+    drop = new Star[300];
+    
+    for (int i = 0; i < drop.length; i++) {
+        drop[i] = new Star();
+        drop[i].setX(Math.random()*500);
+        drop[i].setY(Math.random()*500);
+    }
+}
+
+public void draw() {
+    background(0, 0, 0);
+    for (int i = 0; i < drop.length; i++) {
+        drop[i].show();
+        drop[i].twinkle();
+    }
+    wing.show();
+    wing.move();
+    
+    // starDraw();
+    // if (wing.getX() > 500) {
+    //     starDraw();
+    // }
+}
+
+public void keyPressed() {
+    if (key != 'w') {
+        // continue;
+        // wing.accelerate(0.05);
+    } else {
+        wing.accelerate(1);
+    }
+    if (key == 'a') {
+        wing.turn(-1);
+    }
+    if (key == 'd') {
+        wing.turn(1);
+    }
+}
+
+// public void starDraw(){
+
+//     // noLoop();
+// }
+
+
+class Spaceship extends Floater {
+    
+    // private int myX, myY;
+
+    public Spaceship() {
+        corners = 3;
+        xCorners = new int[corners];
+        yCorners = new int[corners];
+        xCorners[0] = -8;
+        yCorners[0] = -8;
+        xCorners[1] = 16;
+        yCorners[1] = 0;
+        xCorners[2] = -8;
+        yCorners[2] = 8;
+
+        myCenterX = myCenterY = 250;
+        myAccelCompX = myAccelCompY = 0;
+        myPointDirection = 270;
+        myDirection = 0;
+        
+        myColor = color(255,0,150);
+    }
+
+    public void setX(int x) {myCenterX = x;}
+    public double getX() {return myCenterX;}
+
+    public void setY(int y) {myCenterY = y;}
+    public double getY() {return myCenterY;}
+
+    public void setDirection(double d) {myDirection = d;}
+    public double getDirection() {return myDirection;}
+
+    public void setPointDirection(double degrees) {myPointDirection = degrees;}
+    public double getPointDirection() {return myPointDirection;}
+
+}
+
+class Star {
+    //your code here
+    private double myX, myY;
+    private double a, b;
+    private float opac;
+    private boolean set;
+    private PShape star;
+
+    public Star() {
+        myX = myY = 0;
+        opac =  0;
+        set = false;
+        star = createShape(ELLIPSE, (float)myX, (float)myY, 5, 5);
+    }
+
+    public void setX(double x) {myX = x;}
+    public void setY(double y) {myY = y;}
+
+    public void twinkle() {
+        if (opac < 255 && set == false) {
+            opac += 0.5;
+        }
+        if (opac >= 255 && opac != 0) {
+            opac = 255;
+            set = true;
+            while (opac != 0) {
+                star.setFill(color(0, 0, 0));
+                star.setFill(color(255, 255, 255)), opac);
+                opac -= 0.5;
+                if (opac == 0) {
+                    set = false;
+                    break;
+                }
+            }
+        }
+    }
+
+    public void show() {
+        // filter(BLUR, 1);
+        noStroke();
+        star.setFill(255, 255, 255, opac);
+        shape(star, (float)myX, (float)myY);
+        // System.out.println("test");
+    }
+}
+
+
+//Do NOT modify the Floater class! Make changes in the Spaceship class
+abstract class Floater {
+    protected int corners;  //the number of corners, a triangular floater has 3
+    protected int[] xCorners;
+    protected int[] yCorners;
+    protected int myColor;
+    protected double myCenterX, myCenterY; //holds center coordinates
+    protected double myAccelCompX, myAccelCompY; //holds x and y coordinates of the vector for direction of travel
+    protected double myDirection; //
+    protected double myPointDirection; //holds current direction the ship is pointing in degrees
+
+    abstract public void setX(int x);
+    abstract public double getX();
+    abstract public void setY(int y);
+    abstract public double getY();
+    abstract public void setDirection(double d);
+    abstract public double getDirection();
+    abstract public void setPointDirection(double degrees);
+    abstract public double getPointDirection();
+
+    //Accelerates the floater in the direction it is pointing (myPointDirection)
+    public void accelerate(double dAmount) {
+        //convert the current direction the floater is pointing to radians
+        double dRadians = myPointDirection*(Math.PI/180);
+        //change coordinates of direction of travel
+        myAccelCompX += ((dAmount) * Math.cos(dRadians));
+        myAccelCompY += ((dAmount) * Math.sin(dRadians));
+    }
+
+    public void turn(double nDegreesOfRotation) {
+        //rotates the floater by a given number of degrees
+        myDirection += nDegreesOfRotation;
+    }
+
+    //move the floater in the current direction of travel
+    public void move() {
+        //change the x and y coordinates by myDirectionX and myDirectionY
+        myCenterX += myAccelCompX;
+        myCenterY += myAccelCompY;
+
+        myPointDirection += myDirection;
+
+
+
+
+        //wrap around screen
+        if (myCenterX > width) {
+            myCenterX = 0;
+        } else if (myCenterX < 0) {
+            myCenterX = width;
+        }
+
+        if (myCenterY > height) {
+            myCenterY = 0;
+        } else if (myCenterY < 0) {
+            myCenterY = height;
+        }
+    }
+
+    //Draws the floater at the current position
+    public void show() {
+        fill(myColor);
+        stroke(myColor);
+
+        //translate the (x,y) center of the ship to the correct position
+        translate((float)myCenterX, (float)myCenterY);
+
+        //convert degrees to radians for rotate()
+        float dRadians = (float)(myPointDirection*(Math.PI/180));
+
+        //rotate so that the polygon will be drawn in the correct direction
+        rotate(dRadians);
+
+        //draw the polygon
+        beginShape();
+        for (int nI = 0; nI < corners; nI++) {
+            vertex(xCorners[nI], yCorners[nI]);
+        }
+        endShape(CLOSE);
+
+        //"unrotate" and "untranslate" in reverse order
+        rotate(-1*dRadians);
+        translate(-1*(float)myCenterX, -1*(float)myCenterY);
+
+    }
+}
