@@ -17,15 +17,15 @@
       },
       "args": [
         "--force",
-        "--sketch=C:/Users/CHRISY~1/Documents/GitHub/APCS/Processing/Lightning",
-        "--output=C:/Users/CHRISY~1/Documents/GitHub/APCS/Processing/Lightning/out",
+        "--sketch=C:/Users/chyuan1/Documents/GitHub/APCS/Processing/SierpinskiTriangle",
+        "--output=C:/Users/chyuan1/Documents/GitHub/APCS/Processing/SierpinskiTriangle/out",
         "--run"
       ],
       "windows": {
         "args": [
           "--force",
-          "--sketch=C:/Users/CHRISY~1/Documents/GitHub/APCS/Processing/Lightning",
-          "--output=C:/Users/CHRISY~1/Documents/GitHub/APCS/Processing/Lightning\\out",
+          "--sketch=C:/Users/chyuan1/Documents/GitHub/APCS/Processing/SierpinskiTriangle",
+          "--output=C:/Users/chyuan1/Documents/GitHub/APCS/Processing/SierpinskiTriangle\\out",
           "--run"
         ]
       }
