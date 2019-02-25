@@ -2,3 +2,4 @@
 Processing/Lightning/buildfilelightning.bat
 Processing/Dice/buildfiledice.bat
 Processing/Chemotaxis/buildfiletaxi.bat
+.vscode/tasks.json
