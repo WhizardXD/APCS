@@ -1,4 +1,4 @@
-import de.bezier.guido.*;
+  import de.bezier.guido.*;
 
 //Declare and initialize NUM_ROWS and NUM_COLS = 20
 public final static int NUM_ROWS = 20;
@@ -8,7 +8,7 @@ private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> bombs; //ArrayList of just the minesweeper buttons that are mined
 
 public void setup() {
-    size(400, 500);
+    size(400, 400);
     textAlign(CENTER,CENTER);
     
     // make the manager
@@ -30,18 +30,18 @@ public void setup() {
 
 public void setBombs() {
     //your code
-    while (bombs.size() < 80) {
+    while (bombs.size() < 30) {
         int r = (int)(Math.random()*NUM_ROWS);
         int c = (int)(Math.random()*NUM_COLS);
         if (bombs.contains(buttons[r][c]) == false) {
-            bombs.add(buttons[r][c]);
-            // println(r + ", " + c);
+            bombs.add(new MSButton(r,c));
+            println(r + ", " + c);
         }
     }
 }
 
 public void draw() {
-    // background( 0 );
+    background( 0 );
     if (isWon()) {
         displayWinningMessage();
     }
@@ -49,33 +49,19 @@ public void draw() {
 
 public boolean isWon() {
     //your code here
-    for (MSButton temp: bombs) {
-        if (temp.isMarked() == false) {
-            return false;
-        }
-    }
-    return true;
+
+    return false;
 }
 
 public void displayLosingMessage() {
     //your code here
-    for (MSButton temp: bombs) {
-        temp.setClick();
-    }
-    fill(0, 0, 255);
-    // textSize(20);
-    text("You Lost!", 200, 450);
-    // println("You Lost!");
+
+    println("You Lost!");
 }
 
 public void displayWinningMessage() {
     //your code here
-    if (isWon()) {
-        fill(0, 0, 255);
-        // textSize(20);
-        text("You Won!", 200, 450);
-        // println("You Won!");
-    }
+    println("You Won!");
 }
 
 
@@ -104,12 +90,6 @@ public class MSButton {
     public boolean isClicked() {
         return clicked;
     }
-
-    public void setClick() {
-        clicked = true;
-    }
-
-
     // called by manager
     
     public void mousePressed() {
@@ -122,14 +102,15 @@ public class MSButton {
             }
         } else if (bombs.contains(this)) {
             displayLosingMessage();
-        } else if (!marked && countBombs(r,c) > 0) {
+        } else if (countBombs(r,c) > 0) {
             setLabel("" + countBombs(r,c));
         } else {
             for (int nR = -1; nR <= 1; nR++) {
                 for (int nC = -1; nC <= 1; nC++) {
-                    if (isValid(r+nR,c+nC) && !(nR == 0 && nC == 0) && !(buttons[r+nR][c+nC].isClicked())) {
+                    if (isValid(r+nR,c+nC) && (nR != 0 && nC != 0) && !(buttons[r+nR][c+nC].isClicked())) {
                         buttons[r+nR][c+nC].mousePressed();
-                    }
+                        continue;
+                    } 
                 }
             }
         }
@@ -168,8 +149,8 @@ public class MSButton {
     public int countBombs(int row, int col) {
         int numBombs = 0;
         //your code here
-        for (int r = -1; r <= 1; r++) {
-            for (int c = -1; c <= 1; c++) {
+        for (int r = -2; r < 3; r++) {
+            for (int c = -2; c < 3; c++) {
                 if (isValid(row+r, col+c) && bombs.contains(buttons[row+r][col+c])) {
                     numBombs++;
                 }
@@ -178,6 +159,3 @@ public class MSButton {
         return numBombs;
     }
 }
-
-
-
